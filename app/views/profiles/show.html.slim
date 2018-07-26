@@ -1,0 +1,35 @@
+- content_for :title, "#{user.name}"
+
+.medium-4.medium-centered.column
+  .profile
+    .callout
+      .medium-10.medium-centered.column
+        .username.float-left
+          h5
+            |
+            = user.name
+
+        .float-right
+          = link_to "edit", edit_user_registration_path if user_signed_in? && current_user == user
+        /hr
+        /span
+          .photo
+            = image_tag user.photo_url(:thumb).to_s
+        br
+        span
+          .info
+            |
+            strong  Email:
+            '
+            = user.email
+            br
+            |
+            strong posts count:
+            '
+            = user.posts_count(user.id)
+            br
+            strong Registrated at:
+            '
+            = user.created_at_h
+            br
+            = link_to "See all posts this user", user_posts_path(user)

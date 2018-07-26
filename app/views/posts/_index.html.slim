@@ -1,0 +1,21 @@
+- if can? :create, :post
+  .row
+    .col-lg-12
+      .pull-right
+        a href="#{new_post_path}" class="btn btn-default" aria-label="Center Align"
+          small
+            i> class="glyphicon glyphicon-plus"
+            | New Post
+
+div#posts-list
+  - @posts.each do |post|
+    div
+      h2
+        a href="#{post_path(post)}" #{post.title}
+      h4
+        small> by
+        = link_to post.user.name, users_path(post.user)
+        small< #{time_ago_in_words(post.created_at)} ago
+      div
+        = markdown(truncate(post.content, length: 65, omission: '...', escape: false))
+        hr
