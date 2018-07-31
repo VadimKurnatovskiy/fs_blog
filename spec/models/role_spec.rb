@@ -18,7 +18,7 @@ RSpec.describe Role, :type => :model do
   it 'assigns users' do
     users = [FactoryBot.create(:user, first_name: 'Foo'), FactoryBot.create(:user)]
 
-    role = FactoryBot.create(:admin_role, users: users)
+    role = FactoryBot.create(:admin, users: users)
 
     expect(Role.find_by_name('admin').users).to eq(users)
     expect(User.find_by_first_name('Foo').roles).to include(role)

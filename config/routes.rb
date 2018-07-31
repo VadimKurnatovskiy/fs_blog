@@ -2,8 +2,7 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [:create, :destroy]
   end
-
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'users/registrations' }
   get 'users/:id', to: "profiles#show", as: 'users'
   get 'posts/user/:user_id', to: 'posts#index', as: 'user_posts'
 

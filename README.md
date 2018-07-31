@@ -2,11 +2,8 @@ admin:
         email: admin@admin.com
         password: administrator
 
-You can use the Backbone.js implementation by changing one setting in `config/settings.yml`
-        use_mvc: yes
-
         Задание
-  Базовая (прим. 60% объёма проекта) функциональность проекта описана ниже:
+        Базовая (прим. 60% объёма проекта) функциональность проекта описана ниже:
 
         As guest I want to
         +++     create new account
@@ -14,8 +11,8 @@ You can use the Backbone.js implementation by changing one setting in `config/se
         +++     recover forgotten password
         +++     edit my email and/or password
         As guest I want to
-        ---     sign up using my Google account
-        ---     sign in using my Google account
+        +++     sign up using my Google account
+        +++     sign in using my Google account
 
         As user I want to:
                 view my 10 recent posts at main page sorted by creation date (new posts first)
@@ -34,7 +31,7 @@ You can use the Backbone.js implementation by changing one setting in `config/se
         ---     be able to delete my comment
         ---     not be able to delete not my comments
 
-  Дополнительная функциональность (прим. 40% объёма проекта) обсуждается с каждым стажёром индивидуально, в зависимости от выбранной направленности проекта, например, можно дополнительно реализовать:
+Дополнительная функциональность (прим. 40% объёма проекта) обсуждается с каждым стажёром индивидуально, в зависимости от выбранной направленности проекта, например, можно дополнительно реализовать:
 
         +   Использование markdown для редактора публикаций и комментариев
         Уведомления на почту автору публикации при появлении новых комментариев
@@ -48,7 +45,7 @@ You can use the Backbone.js implementation by changing one setting in `config/se
         Подключения внешних сервисов (Amazon AWS, переводчики, любые сервисы, использующие API)
 В проекте обязательно необходимо выделить код, реализующий Presentation Layer и Service Layer, а также использовать паттерны Decorator (Presenter), QueryObject, PageObject, FormObject.
 
-  Рекомендуемые для использования библиотеки:
+        Рекомендуемые для использования библиотеки:
         +   Devise для аутентификации пользователей
         +   Pundit для создания политик авторизации действий пользователей
         Interactor для реализации паттерна Service Layer

@@ -38,7 +38,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    post.user_id = current_user.id
+    @post.user_id = current_user.id
     @post = Post.find(params[:id])
   end
 
@@ -78,7 +78,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    post.user_id = current_user.id
+    @post.user_id = current_user.id
     @post = Post.find(params[:id])
     @post.destroy
 

@@ -10,11 +10,11 @@ class CommentsController < ApplicationController
       if @post.save
         format.html { redirect_to @post, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created }
-        format.js   { CommentsChannel.broadcast_to "post:#{@post.id}", action: 'create', comment_id: @comment.id, comment: @comment }
+        format.js   { create_comment, action: 'create', comment_id: @comment.id, comment: @comment }
       else
         format.html { render template: 'posts/show', locals: { comment: @comment } }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
-        format.js   {}
+        format.js   { render errors: post.errors, status: not_proccessible }
       end
     end
   end
@@ -26,14 +26,19 @@ class CommentsController < ApplicationController
       format.html { redirect_to post_path(@post) }
       format.json { head :no_content }
       format.js do
-        CommentsChannel.broadcast_to "post:#{@post.id}", action: 'delete', comment_id: @comment.id
+        delete_comment, action: 'delete', comment_id: @comment.id
         head :no_content
       end
     end
   end
 
   private
-
+  def create_comment
+    CommentsChannel.broadcast_to "post:#{@post.id}"
+  end
+  def delete_comment
+    CommentsChannel.broadcast_to "post:#{@post.id}"
+  end
   def find_post
     @post = Post.find(params[:post_id])
   end
