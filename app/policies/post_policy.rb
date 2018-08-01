@@ -11,9 +11,6 @@ class EventPolicy < ApplicationPolicy
   end
 
   private
-  def user_present?
-    user.present?
-  end
 
   def user_owner?
     record.user == user

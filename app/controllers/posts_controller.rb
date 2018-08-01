@@ -3,47 +3,38 @@ class PostsController < ApplicationController
   load_and_authorize_resource
   skip_authorize_resource only: [:index, :show]
 
-  # GET /posts
-  # GET /posts.json
   def index
     @posts = Post.all.order(id: :desc)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @posts }
     end
   end
 
-  # GET /posts/1
-  # GET /posts/1.json
   def show
     @post = Post.includes(:comments => :user).find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @post, include: { comments: { include: :user } } }
     end
   end
 
-  # GET /posts/new
-  # GET /posts/new.json
   def new
     @post = Post.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @post }
     end
   end
 
-  # GET /posts/1/edit
   def edit
     @post.user_id = current_user.id
     @post = Post.find(params[:id])
   end
 
-  # POST /posts
-  # POST /posts.json
   def create
     @post = Post.new(post_params)
     @post.user = current_user
@@ -59,8 +50,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # PUT /posts/1
-  # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
 
@@ -75,8 +64,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1
-  # DELETE /posts/1.json
   def destroy
     @post.user_id = current_user.id
     @post = Post.find(params[:id])
