@@ -1,0 +1,12 @@
+.blog-post
+  h2 = link_to(post.title, post)
+  p = post.text_html
+  - if local_assigns[:full]
+    .callout
+      ul.menu.simple
+        h4
+        small> by
+        = link_to post.user.name, users_path(post.user)
+        small< #{time_ago_in_words(post.created_at)} ago
+        li
+          = link_to "Comments: #{post.comments_number}", post

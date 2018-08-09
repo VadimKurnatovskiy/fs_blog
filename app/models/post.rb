@@ -3,4 +3,6 @@ class Post < ActiveRecord::Base
   has_many :comments
 
   validates_presence_of :user, :title, :content
+
+  scope :by_user, -> (user) { where(user: user) }
 end

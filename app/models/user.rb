@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
     return !!self.roles.find_by_name(role.to_s)
   end
 
+
   def admin
     role? :admin
   end

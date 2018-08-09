@@ -22,8 +22,7 @@ gem 'rails-timeago', '~> 2.0'
 gem 'therubyracer'
 gem 'less-rails-bootstrap'
 gem 'underscore-string-rails'
-gem 'rails-backbone', git: 'https://github.com/netfighter/backbone-rails'
-gem 'backbone-nested-attributes'
+gem 'underscore-rails'
 
 # Gretel breadcrumbs
 gem 'gretel', git: 'https://github.com/ibiziiac-sv/gretel', branch: 'dev'
@@ -43,6 +42,12 @@ gem 'sprockets', '3.6.3'
 gem 'decent_exposure', '3.0.0'
 gem 'draper'
 gem 'decent_decoration', '~> 0.1.0'
+gem 'responders'
+gem 'simple_form'
+gem 'kaminari'
+gem 'metamagic'
+gem 'active_link_to'
+
 
 group :development do
   gem 'better_errors'

@@ -4,12 +4,17 @@
     .callout
       .medium-10.medium-centered.column
         .username.float-left
-          h5
+          h4
             |
             = user.name
 
         .float-right
-          = link_to "edit", edit_user_registration_path if user_signed_in? && current_user == user
+          - if user_signed_in? && current_user == user
+            = link_to (content_tag(:small, content_tag(:i, '', class: 'glyphicon glyphicon-pencil') + ' Edit')),
+                      edit_user_registration_path,
+                      class: 'btn btn-default',
+                      'aria-label' => 'Center Align'
+
         /hr
         /span
           .photo
@@ -31,4 +36,4 @@
             '
             = user.created_at_h
             br
-            = link_to "See all posts this user", user_posts_path(user)
+            = link_to "See all posts this user", controller: "user_posts", user_id: user.id

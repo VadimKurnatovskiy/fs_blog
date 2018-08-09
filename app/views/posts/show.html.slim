@@ -1,7 +1,7 @@
 .row
   div class="col-lg-9 col-md-9 col-sm-9 col-xs-7"
-    h2 = @post.title
-  - if can? :manage, @post
+    h2 = post.title
+  - if user_signed_in?
     div class="col-lg-3 col-md-3 col-sm-3 col-xs-5"
       .pull-right
         div class="btn-toolbar" role="toolbar"
@@ -10,18 +10,18 @@
                       posts_path,
                       class: 'btn btn-default',
                       'aria-label' => 'Left Align'
-            - if (user_signed_in? && current_user == @post.user)
+            - if policy(post).owner?
               = link_to (content_tag(:small, content_tag(:i, '', class: 'glyphicon glyphicon-pencil') + ' Edit')),
-                        edit_post_path(@post),
+                        edit_users_post_path(post),
                         class: 'btn btn-default',
                         'aria-label' => 'Center Align'
               = link_to content_tag(:small, content_tag(:i, '', class: 'glyphicon glyphicon-remove') + ' Delete'),
-                        post_path(@post),
+                        users_post_path(@post),
                         class: 'btn btn-default',
                         confirm: 'Are you sure?',
                         method: :delete,
                         'aria-label' => 'Justify'
 
-div#post-content = markdown @post.content
+div#post-content = markdown post.content
 hr
-= render 'comments/comments', post: @post
+= render("comments/comments", comments: comments, comment: comment)
