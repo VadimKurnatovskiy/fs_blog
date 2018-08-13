@@ -1,0 +1,12 @@
+#new-comment-container
+  .well
+    h4 Leave a comment:
+    - if current_user.present?
+      /- binding.pry
+      = simple_form_for([:users, post, comment]) do |f|
+        .form-group
+          = f.input :content, class: 'form-control', rows: 2
+        .form-group
+          = f.button :submit, class: 'btn btn-primary', id: 'add-button'
+    - else
+      | Your must be signed in for leaving comments

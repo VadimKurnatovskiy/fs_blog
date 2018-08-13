@@ -15,7 +15,7 @@ admin:
         +++     sign in using my Google account
 
         As user I want to:
-                view my 10 recent posts at main page sorted by creation date (new posts first)
+        +++     view my 10 recent posts at main page sorted by creation date (new posts first)
         +++     create new post with title and content
         +++     view my post with comments sorted by creation date, older comments first
         +++     edit previous post title and/or content
@@ -23,13 +23,13 @@ admin:
         +++     not be able to delete not my posts
 
         As user I want to:
-        ---    view 10 recent posts of specified user at /username URL (sorted by creation              date)
+        +++    view 10 recent posts of specified user at /username URL (sorted by creation              date)
         +++    view any post of other user with comments sorted by creation date, older                 comments first
 
         As user I want to
-        ---     create new comment (simple text) to post using form at the bottom of post page
-        ---     be able to delete my comment
-        ---     not be able to delete not my comments
+        +++     create new comment (simple text) to post using form at the bottom of post page
+        +++     be able to delete my comment
+        +++     not be able to delete not my comments
 
 Дополнительная функциональность (прим. 40% объёма проекта) обсуждается с каждым стажёром индивидуально, в зависимости от выбранной направленности проекта, например, можно дополнительно реализовать:
 
@@ -54,8 +54,8 @@ admin:
         Bootswatch для оформления интерфейса с помощью "тем"
         +   Slim вместо стандартного движка шаблонов ERB
         +   SimpleForm для создания форм
-        Responders для уменьшения дублирования кода в контроллерах
+        +   Responders для уменьшения дублирования кода в контроллерах
         +   Decent Exposure для уменьшения количества кода в контроллерах
-        Kaminari для управления пагинацией
+        +   Kaminari для управления пагинацией
         +   RSpec для написания тестов
         +   Capybara для написания тестов, симулирующих поведение пользователя
