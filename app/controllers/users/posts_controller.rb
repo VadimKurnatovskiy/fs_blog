@@ -1,8 +1,8 @@
 module Users
   class PostsController < ApplicationController
     before_action :authenticate_user!
-    expose_decorated(:post, attributes: :post_params)
-    expose_decorated(:comments) { post.comments.includes(:user) }
+    expose(:post, attributes: :post_params)
+    expose(:comments) { post.comments.includes(:user) }
 
     # TODO: respond_with (responder)
     def create

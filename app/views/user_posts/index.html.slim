@@ -1,4 +1,4 @@
-div#posts
+#posts
     - if can? :create, :post
     .col-lg-12
       .pull-right
@@ -7,11 +7,11 @@ div#posts
             i> class="glyphicon glyphicon-plus"
             | New Post
 
-div#posts-list
+#posts-list
   - posts.each do |post|
     div
       h2
-        a href="#{post_path(post)}" #{post.title}
+        a href= post_path(post) = post.title
       h4
         small> by
         = link_to post.user.name, users_path(post.user)

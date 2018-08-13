@@ -7,11 +7,8 @@ class Users::CommentsController < ApplicationController
   def create
     comment.user = current_user
     comment.post = post
-    if comment.save
-      respond_with post
-    else
-      flash[:error] = "Error"
-    end
+    comment.save
+    respond_with post
   end
 
   def destroy
