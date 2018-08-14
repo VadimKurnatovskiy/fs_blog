@@ -20,7 +20,7 @@ html lang="en"
 
 
   body
-    nav class="navbar navbar-default navbar-static-top navbar-inverse"
+    nav.navbar.navbar-default.navbar-static-top.navbar-inverse
       .container
         .navbar-header
           button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"
@@ -28,16 +28,20 @@ html lang="en"
             span.icon-bar
             span.icon-bar
           a.navbar-brand href="/" FS Blog
+        #navbar.navbar-collapse.collapse
+          =form_tag("/search", method: "get", class: "navbar-form navbar-left") do
+              = label_tag(:search, "Search:", class: "form-control")
+              = text_field_tag(:search)
+              = submit_tag("Search", class: "btn btn-mdb-color btn-rounded btn-sm my-0 ml-sm-2")
 
-        div id="navbar" class="navbar-collapse collapse"
-          ul class="nav navbar-nav navbar-right"
-            li class="dropdown"
+          ul.nav.navbar-nav.navbar-right
+            li.dropdown
               - if current_user
                 a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
                   i> class="glyphicon glyphicon-user"
                   = current_user
                   span< class="caret"
-                ul class="dropdown-menu" role="menu"
+                ul.dropdown-menu role="menu"
                   li
                     a href="#{edit_user_registration_path}"
                       i> class="glyphicon glyphicon-edit"
