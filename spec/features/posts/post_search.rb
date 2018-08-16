@@ -1,18 +1,35 @@
 RSpec.describe FindPosts do
   let(:initial_scope) { Post.all }
 
-  let(:params) { {} }
-
-  subject { described_class.new(initial_scope).call(params) }
+  let(:search) { string 'some' }
+  let(:empty_params) { {} }
+  let(:params) { [:search, :sort, :page] }
+  empty_subject { described_class.new(initial_scope).call(empty_params) }
+  subject { described_class.new(initial_scope).call(params)}
 
   context 'with empty params' do
 
     it 'search' do
-      expect(subject.to_sql).to include('title LIKE OR content LIKE')
+      expect(empty_subject.to_sql).to include('SELECT  "posts".* FROM "posts" WHERE (title LIKE %% OR content SIMILAR TO %%)')
     end
 
     it 'sort' do
-      expect(subject.to_sql).to include('ORDER BY "posts"."created_at" DESC LIMIT 7 OFFSET 0')
+      expect(empty_subject.to_sql).to include('ORDER BY "posts"."created_at" DESC')
+    end
+
+    it 'paginates' do
+      expect(empty_subject.to_sql).to include('LIMIT')
+      expect(empty_subject.to_sql).to include('OFFSET')
+    end
+  end
+  context "with parameters" do
+
+    it 'search' do
+      expect(subject.to_sql).to include('SELECT  "posts".* FROM "posts" WHERE (title LIKE some OR content SIMILAR TO some)')
+    end
+
+    it 'sort' do
+      expect(subject.to_sql).to include('ORDER BY "posts"."created_at" DESC')
     end
 
     it 'paginates' do

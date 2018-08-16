@@ -5,7 +5,7 @@ gem 'rails', '~> 5.0.1'
 gem 'actioncable'
 gem 'puma'
 
-gem 'mysql2'
+
 gem 'pg'
 gem 'redis'
 

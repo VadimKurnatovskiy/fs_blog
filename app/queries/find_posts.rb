@@ -15,7 +15,7 @@ class FindPosts
   private
 
   def search(scoped, query = nil)
-    query ? scoped.where('title LIKE :query OR content LIKE :query', query: "%#{query}%") : scoped
+    query ? scoped.where('title LIKE :query OR content SIMILAR TO :query', query: "%#{query}%") : scoped
   end
 
   def sort(scoped)
