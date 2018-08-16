@@ -1,20 +1,17 @@
-- if user_signed_in?
-  = render "posts/new_post"
-  div#posts-list
+= render "posts/new_post"
+#posts-list
+  -if posts.count.zero?
+    | No results
+  -else
     - posts.each do |post|
       div
         h2
-          a href="#{post_path(post)}" #{post.title}
+          a href= post_path(post) = post.title
         h4
           small> by
           = link_to post.author, users_path(post.user)
           small< #{time_ago_in_words(post.created_at)} ago
-        h4
-          small< = link_to "Comments: #{post.comments_number}", post
         div
           = markdown(truncate(post.content, length: 35, omission: '...', escape: false))
           hr
     = paginate(posts)
-- else
-  .pull-left
-    | You Must be Sign In to see posts!

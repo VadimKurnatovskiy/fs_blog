@@ -1,10 +1,9 @@
 module Users
   class PostsController < ApplicationController
     before_action :authenticate_user!
-    expose(:post, attributes: :post_params)
-    expose(:comments) { post.comments.includes(:user) }
+    expose_decorated(:post, attributes: :post_params)
+    expose_decorated(:comments) { post.comments.includes(:user) }
 
-    # TODO: respond_with (responder)
     def create
       post.user = current_user
       if post.save
@@ -33,7 +32,7 @@ module Users
     private
 
     def post_params
-      params.require(:post).permit(:title, :content, :user)
+      params.require(:post).permit(:title, :content)
     end
   end
 end
