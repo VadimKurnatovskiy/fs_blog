@@ -1,0 +1,4 @@
+=form_tag("/search", method: "get", class: "navbar-form navbar-left") do
+    = label_tag(:search, "Search:", class: "form-control")
+    = text_field_tag(:search)
+    = submit_tag("Search", class: "btn btn-mdb-color btn-rounded btn-sm my-0 ml-sm-2")

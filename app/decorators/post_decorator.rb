@@ -1,6 +1,10 @@
 class PostDecorator < ApplicationDecorator
   delegate_all
 
+  def author
+    user.name
+  end
+
   def comments_number
     comments.count
   end

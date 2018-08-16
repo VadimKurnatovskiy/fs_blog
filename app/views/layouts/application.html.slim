@@ -29,39 +29,12 @@ html lang="en"
             span.icon-bar
           a.navbar-brand href="/" FS Blog
         #navbar.navbar-collapse.collapse
-          =form_tag("/search", method: "get", class: "navbar-form navbar-left") do
-              = label_tag(:search, "Search:", class: "form-control")
-              = text_field_tag(:search)
-              = submit_tag("Search", class: "btn btn-mdb-color btn-rounded btn-sm my-0 ml-sm-2")
-
-          ul.nav.navbar-nav.navbar-right
-            li.dropdown
-              - if current_user
-                a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
-                  i> class="glyphicon glyphicon-user"
-                  = current_user
-                  span< class="caret"
-                ul.dropdown-menu role="menu"
-                  li
-                    a href="#{edit_user_registration_path}"
-                      i> class="glyphicon glyphicon-edit"
-                      | Edit account
-                  li
-                    a href="#{destroy_user_session_path}" data-method="delete"
-                      i> class="glyphicon glyphicon-log-out"
-                      | Sign out
-              - else
-                li
-                  a href="#{new_user_session_path}"
-                    i> class="glyphicon glyphicon-log-in"
-                    | Sign in
+          = render "navigation/search_bar"
+          = render "navigation/user_navigation"
 
     .container
       .row
         .col-lg-12
           = flash_messages
           = yield
-
-    footer class="footer"
-      .container.text-center
-        p class="text-muted"  &copy; FS Blog, #{Date.today.year}
+    = render "navigation/footer"

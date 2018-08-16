@@ -1,5 +1,5 @@
 class UserPostsController < ApplicationController
-  expose(:posts) { posts_by_user_finder }
+  expose_decorated(:posts) { posts_by_user_finder }
 
   def index
   end

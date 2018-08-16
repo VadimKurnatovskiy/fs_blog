@@ -1,6 +1,6 @@
 class SearchPostsController < ApplicationController
-  expose(:posts) { posts_by_params_finder }
-
+  expose_decorated(:posts) { posts_by_params_finder }
+  expose_decorated(:post)
   def index
   end
 
@@ -11,7 +11,7 @@ class SearchPostsController < ApplicationController
   end
 
   def posts_by_params_finder
-    @posts = FindPosts.new(Post.all).call(permitted_params)
+    @posts = FindPosts.new.call(permitted_params)
   end
 
 end
