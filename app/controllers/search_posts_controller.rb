@@ -7,7 +7,7 @@ class SearchPostsController < ApplicationController
   private
 
   def permitted_params
-    params.permit(:search, :sort, :page)
+    params.permit(:search, :order, :page)
   end
 
   def posts_by_params_finder

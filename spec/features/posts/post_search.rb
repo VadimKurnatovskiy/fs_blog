@@ -3,7 +3,7 @@ RSpec.describe FindPosts do
 
   let(:search) { string 'some' }
   let(:empty_params) { {} }
-  let(:params) { [:search, :sort, :page] }
+  let(:params) { [:search, :order, :page] }
   empty_subject { described_class.new(initial_scope).call(empty_params) }
   subject { described_class.new(initial_scope).call(params)}
 
@@ -13,7 +13,7 @@ RSpec.describe FindPosts do
       expect(empty_subject.to_sql).to include('SELECT  "posts".* FROM "posts" WHERE (title LIKE %% OR content SIMILAR TO %%)')
     end
 
-    it 'sort' do
+    it 'order' do
       expect(empty_subject.to_sql).to include('ORDER BY "posts"."created_at" DESC')
     end
 
@@ -28,7 +28,7 @@ RSpec.describe FindPosts do
       expect(subject.to_sql).to include('SELECT  "posts".* FROM "posts" WHERE (title LIKE some OR content SIMILAR TO some)')
     end
 
-    it 'sort' do
+    it 'order' do
       expect(subject.to_sql).to include('ORDER BY "posts"."created_at" DESC')
     end
 
