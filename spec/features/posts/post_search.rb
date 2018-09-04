@@ -1,23 +1,23 @@
-RSpec.describe FindPosts do
-  let(:initial_scope) { Post.all }
+require "rails_helper"
 
-  let(:params) { {} }
+feature "As user I can search posts" do
 
-  subject { described_class.new(initial_scope).call(params) }
-
-  context 'with empty params' do
-
-    it 'search' do
-      expect(subject.to_sql).to include('title LIKE OR content LIKE')
-    end
-
-    it 'sort' do
-      expect(subject.to_sql).to include('ORDER BY "posts"."created_at" DESC LIMIT 7 OFFSET 0')
-    end
-
-    it 'paginates' do
-      expect(subject.to_sql).to include('LIMIT')
-      expect(subject.to_sql).to include('OFFSET')
-    end
+  scenario "with title query parameters" do
+    fill_in :search, with: "MyString"
+    click_button "Search"
+    expect(page).to have_content "MyString"
   end
+
+  scenario "with description query parameters" do
+    fill_in :search, with: "Some"
+    click_button "Search"
+    expect(page).to have_content "Some"
+  end
+
+  scenario "with empty parameters" do
+    fill_in :search, with: ""
+    click_button "Create Course"
+    expect(page).to have_content "No results"
+  end
+
 end
