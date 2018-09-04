@@ -5,8 +5,6 @@ class Users::CommentsController < ApplicationController
   expose(:comments, ancestor: :post)
 
   def create
-    comment.user = current_user
-    comment.post = post
     comment.save
     respond_with post
   end
@@ -19,6 +17,6 @@ class Users::CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content).merge(user_id: current_user.id, post_id: post.id)
   end
 end
