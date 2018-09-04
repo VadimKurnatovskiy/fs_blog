@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'users/registrations' }
-  get 'users/:id', to: "profiles#show", as: 'users'
+  # get 'users/:id', to: "profiles#show", as: 'users'
   namespace :users do
     resources :posts, only: %i(new create edit update destroy) do
       resources :comments, only: %i(create destroy)
@@ -8,8 +8,11 @@ Rails.application.routes.draw do
   end
   get '/search' => 'search_posts#index'
   resources :posts, only: %i(show index)
-
-  get "/users/:user_id/posts/", to: "user_posts#index"
+  resources :users, only: :show, controller: "profiles" do
+    resources :posts, only: :index, controller: "user_post"
+  end
+  
+  #get "/users/:user_id/posts/", to: "user_posts#index"
 
   root to: 'posts#index'
 
